@@ -1,5 +1,6 @@
 package com.vilin.kafka.producter;
 
+import com.vilin.kafka.partitioner.MyPartitioner;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.serialization.StringSerializer;
@@ -15,9 +16,10 @@ public class Producter {
         properties.setProperty("key.serializer", StringSerializer.class.getName());
         //value序列化器：
         properties.setProperty("value.serializer", StringSerializer.class.getName());
+        properties.setProperty("partitioner.class", MyPartitioner.class.getName());
 
         KafkaProducer<String, String> kafkaProducer = new KafkaProducer<String, String>(properties);
-        ProducerRecord<String, String> record = new ProducerRecord<String, String>("my-topic","test.key","hello kafka");
+        ProducerRecord<String, String> record = new ProducerRecord<String, String>("my-topic", "keytest","hello kafka");
         kafkaProducer.send(record);
         kafkaProducer.flush();
         kafkaProducer.close();
