@@ -11,9 +11,9 @@ public class MyPartitioner implements Partitioner {
     public int partition(String s, Object o, byte[] bytes, Object o1, byte[] bytes1, Cluster cluster) {
         System.out.println("使用了自定义分区管理器");
         if(bytes == null){
-            return 0;
+            return 3;
         }else {
-            return 1;
+            return 4;
         }
     }
 
